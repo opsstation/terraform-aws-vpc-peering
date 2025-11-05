@@ -1,4 +1,5 @@
 name: tfsec
+
 on:
   push:
     branches:
@@ -7,26 +8,30 @@ on:
 
 jobs:
   tfsec:
-    name: tfsec sarif report
+    name: Terraform Security Scan (tfsec + SARIF)
     runs-on: ubuntu-latest
 
     steps:
-      - name: Clone repo
-        uses: actions/checkout@master
+      # Checkout repository
+      - name: Checkout repo
+        uses: actions/checkout@v4   # ✅ updated from @master → @v4 (latest stable)
 
-      - name: tfsec
-        uses: aquasecurity/tfsec-sarif-action@v0.1.4
+      # Run tfsec and generate SARIF report
+      - name: Run tfsec
+        uses: aquasecurity/tfsec-sarif-action@v1.0.0   # ✅ updated from v0.1.4 → v1.0.0
         with:
           sarif_file: tfsec.sarif
           full_repo_scan: true
 
-      - name: tfsec commenter for PR
-        uses: tfsec/tfsec-pr-commenter-action@v1.3.1
+      # Add tfsec comments on Pull Requests
+      - name: tfsec PR commenter
+        uses: aquasecurity/tfsec-pr-commenter-action@v1.4.0   # ✅ updated from tfsec/tfsec-pr-commenter-action@v1.3.1 → aquasecurity version (latest)
         with:
           GITHUB_TOKEN: ${{ github.token }}
 
-      - name: Terraform security scan Advanced
-        uses: triat/terraform-security-scan@v3.1.0
+      # Terraform advanced security scan
+      - name: Terraform security scan (advanced)
+        uses: triat/terraform-security-scan@v4.0.0   # ✅ updated from v3.1.0 → v4.0.0
         if: github.event_name == 'pull_request'
         env:
           GITHUB_TOKEN: ${{ github.token }}

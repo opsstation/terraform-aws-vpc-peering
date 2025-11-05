@@ -1,4 +1,5 @@
 name: Terraform-Lint
+
 on:
   push:
     branches: [ master ]
@@ -9,27 +10,33 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
-        name: Checkout source code
+      # Checkout source code
+      - name: Checkout source code
+        uses: actions/checkout@v4   # ✅ Latest stable
 
-      - uses: actions/cache@v3
-        name: Cache plugin dir
+      # Cache TFLint plugin directory
+      - name: Cache plugin dir
+        uses: actions/cache@v4      # ✅ Updated from v3 → v4
         with:
           path: ~/.tflint.d/plugins
           key: ubuntu-latest-tflint-${{ hashFiles('.tflint.hcl') }}
 
-      - uses: terraform-linters/setup-tflint@v3
-        name: Setup TFLint
+      # Setup latest TFLint
+      - name: Setup TFLint
+        uses: terraform-linters/setup-tflint@v4   # ✅ Updated from v3 → v4
         with:
-          tflint_version: v0.44.1
+          tflint_version: v0.53.0                 # ✅ Updated from v0.44.1 → v0.53.0 (latest stable)
 
+      # Display installed version
       - name: Show version
         run: tflint --version
 
+      # Initialize plugins
       - name: Init TFLint
         run: tflint --init
         env:
           GITHUB_TOKEN: ${{ github.token }}
 
+      # Run lint check
       - name: Run TFLint
         run: tflint -f compact
