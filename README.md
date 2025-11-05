@@ -46,24 +46,30 @@ This module supports both **intra-account** and **cross-account** peering setups
 Here’s how you can use this module in your Terraform configuration:
 
 ```hcl
-module "vpc_peering" {
-  source      = "opsstation/vpc-peering/aws"
-  version     = "1.0.0"
-  name        = "app"
-  environment = "test"
+### 🧩 Example 1: Default
+module "vpc-peering" {
+  source = "./../../"
 
-  requestor_vpc_id = "vpc-0123456789abcdef0"
-  acceptor_vpc_id  = "vpc-0fedcba9876543210"
-
-  # Optional - cross-account setup
-  acceptor_account_id = "123456789012"
-
-  auto_accept = true
-
-  tags = {
-    Project = "OpsStation"
-  }
+  name             = local.name
+  environment      = local.environment
+  requestor_vpc_id = "vpc-0cfff2d5f05914f3c"
+  acceptor_vpc_id  = "vpc-0b9079d160060e1dc"
 }
+
+### 🧩 Multi-Region VPC Peering
+
+module "vpc-peering" {
+  source           = "./../.."
+  name             = "vpc-peering"
+  environment      = "prod"
+  label_order      = ["environment", "name"]
+  requestor_vpc_id = "vpc-0a4dc95ec370935bf"
+  acceptor_vpc_id  = "vpc-04db274fdffd66e0d"
+  accept_region    = "us-east-1"
+  auto_accept      = false
+}
+
+
 ```
 ## 📤 Outputs
 | **Name**                     | **Description**                                                                                |
