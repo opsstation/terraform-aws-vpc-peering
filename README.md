@@ -95,7 +95,6 @@ module "vpc_peering" {
 <<<<<<< HEAD
 =======
 
-```
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
 
