@@ -1,12 +1,10 @@
 data "aws_region" "default" {}
 
-data "aws_caller_identity" "current" {}
 
 locals {
   # FIXED: Default accept_region to current region if empty
   accept_region = var.accept_region != "" ? var.accept_region : data.aws_region.default.name
 
-  # FIXED: CIDR blocks logic for all scenarios
   acceptor_cidr_blocks = var.enable_peering ? (
     # Same region (auto_accept = true)
     var.auto_accept && length(data.aws_vpc.acceptor) > 0 ? data.aws_vpc.acceptor[0].cidr_block_associations[*].cidr_block : (
@@ -51,7 +49,6 @@ resource "aws_vpc_peering_connection" "default" {
   )
 }
 
-# Cross-region/cross-account peering (auto_accept = false)
 resource "aws_vpc_peering_connection" "region" {
   count = var.enable_peering && !var.auto_accept ? 1 : 0
 
@@ -59,7 +56,6 @@ resource "aws_vpc_peering_connection" "region" {
   peer_vpc_id = var.acceptor_vpc_id
   auto_accept = false
   peer_region = local.accept_region
-  # FIXED: peer_owner_id only for cross-account, not for same account multi-region
   peer_owner_id = var.peer_owner_id != "" ? var.peer_owner_id : null
 
   tags = merge(
@@ -98,7 +94,6 @@ data "aws_vpc" "acceptor" {
   id       = var.acceptor_vpc_id
 }
 
-# FIXED: Multi-region acceptor VPC - only for same account
 data "aws_vpc" "acceptor_multi_region" {
   provider = aws.peer
   count    = var.enable_peering && !var.auto_accept && var.peer_owner_id == "" ? 1 : 0 # ✅ Only same account
@@ -120,7 +115,7 @@ data "aws_route_tables" "acceptor" {
 # FIXED: Acceptor route tables - only for same account multi-region
 data "aws_route_tables" "acceptor_multi_region" {
   provider = aws.peer
-  count    = var.enable_peering && !var.auto_accept && var.peer_owner_id == "" ? 1 : 0 # ✅ Only same account
+  count    = var.enable_peering && !var.auto_accept && var.peer_owner_id == "" ? 1 : 0
   vpc_id   = var.acceptor_vpc_id
 }
 
