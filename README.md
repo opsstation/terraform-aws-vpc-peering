@@ -99,8 +99,8 @@ Replace '[License Name]' and '[Your Name]' with the appropriate license and your
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 5.21.0 |
-| <a name="provider_aws.peer"></a> [aws.peer](#provider\_aws.peer) | >= 5.21.0 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | 6.20.0 |
+| <a name="provider_aws.peer"></a> [aws.peer](#provider\_aws.peer) | 6.20.0 |
 
 ## Modules
 
