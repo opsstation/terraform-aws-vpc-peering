@@ -3,11 +3,11 @@ name: pre-commit
 on:
   pull_request:
   push:
-    branches: [master]
+    branches: [feature/upgrade-module]
 
 jobs:
   pre-commit:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-python@v3

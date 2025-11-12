@@ -2,13 +2,13 @@ name: tfsec
 on:
   push:
     branches:
-      - master
+      - feature/upgrade-module
   pull_request:
 
 jobs:
   tfsec:
     name: tfsec sarif report
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
 
     steps:
       - name: Clone repo
