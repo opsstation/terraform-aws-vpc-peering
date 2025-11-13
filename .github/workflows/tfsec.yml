@@ -2,7 +2,7 @@ name: tfsec
 on:
   push:
     branches:
-      - feature/upgrade-module
+      - mster
   pull_request:
 
 jobs:

@@ -3,7 +3,7 @@ name: pre-commit
 on:
   pull_request:
   push:
-    branches: [feature/upgrade-module]
+    branches: [mster]
 
 jobs:
   pre-commit:
