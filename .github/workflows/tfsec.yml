@@ -2,7 +2,7 @@ name: tfsec
 on:
   push:
     branches:
-      - mster
+      - master
   pull_request:
 
 jobs:
