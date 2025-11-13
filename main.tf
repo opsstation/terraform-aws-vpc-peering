@@ -7,7 +7,8 @@ locals {
 }
 
 module "labels" {
-  source      = "git::https://github.com/opsstation/terraform-aws-labels.git?ref=v1.0.0"
+  source      = "opsstation/labels/multicloud"
+  version     = "1.0.0"
   name        = var.name
   environment = var.environment
   repository  = var.repository
@@ -84,7 +85,7 @@ resource "aws_route" "requestor-region" {
       count.index / length(data.aws_vpc.acceptor[0].cidr_block_associations),
     ),
   )
-  destination_cidr_block    = data.aws_vpc.acceptor[*].cidr_block_associations[count.index % length(data.aws_vpc.acceptor[0].cidr_block_associations)]["cidr_block"]
+  destination_cidr_block    = data.aws_vpc.acceptor[0].cidr_block_associations[count.index % length(data.aws_vpc.acceptor[0].cidr_block_associations)]["cidr_block"]
   vpc_peering_connection_id = aws_vpc_peering_connection.region[0].id
   depends_on = [
     data.aws_route_tables.requestor,
@@ -110,7 +111,7 @@ resource "aws_route" "acceptor-region" {
     ),
   )
   provider                  = aws.peer
-  destination_cidr_block    = data.aws_vpc.requestor[*].cidr_block_associations[count.index % length(data.aws_vpc.requestor[*].cidr_block_associations)]["cidr_block"]
+  destination_cidr_block    = data.aws_vpc.requestor[0].cidr_block_associations[count.index % length(data.aws_vpc.requestor[*].cidr_block_associations)]["cidr_block"]
   vpc_peering_connection_id = aws_vpc_peering_connection.region[0].id
   depends_on = [
     data.aws_route_tables.acceptor,
