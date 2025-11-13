@@ -115,7 +115,7 @@ module "vpc-peering" {
   acceptor_cidr_block  = "10.0.0.0/24"
 }
 
-#Important: For cross-account VPC peering, auto_accept must remain false, as AWS does not allow automatic acceptance across different accounts. The connection must be manually approved from the accepter account.
+#Important: For cross-account VPC peering, auto_accept must remain false, as AWS does not allow automatic acceptance across different accounts. The connection must be manually approved from the accepter account
 
 ```
 
