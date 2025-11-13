@@ -2,7 +2,6 @@ data "aws_region" "default" {}
 
 
 locals {
-  # FIXED: Default accept_region to current region if empty
   accept_region = var.accept_region != "" ? var.accept_region : data.aws_region.default.name
 
   acceptor_cidr_blocks = var.enable_peering ? (

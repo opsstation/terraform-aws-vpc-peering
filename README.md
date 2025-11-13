@@ -1,26 +1,66 @@
-# terraform-aws-vpc-peering
+<h1 align="center">🌐 Terraform AWS VPC Peering Module</h1>
 
-# AWS Infrastructure Provisioning with Terraform-aws-vpc-Peering module
+<p align="center">
+  <b>Modern, Scalable, and Secure AWS VPC Peering — Powered by Terraform.</b><br>
+  <i>Connect VPCs across accounts, regions, and environments with minimal configuration.</i>
+</p>
 
-## Table of Contents
+<p align="center">
+  <a href="https://github.com/opsstation/terraform-aws-vpc-peering/releases">
+    <img src="https://img.shields.io/github/v/release/opsstation/terraform-aws-vpc-peering?color=brightgreen&style=for-the-badge&logo=terraform&logoColor=white" alt="Latest Release">
+  </a>
+  <a href="#">
+    <img src="https://img.shields.io/github/actions/workflow/status/opsstation/terraform-aws-vpc-peering/terraform.yml?style=for-the-badge&logo=githubactions&logoColor=white&label=Build" alt="Build Status">
+  </a>
+  <a href="#">
+    <img src="https://img.shields.io/badge/tfsec-passing-success?style=for-the-badge&logo=terraform" alt="tfsec Passing">
+  </a>
+  <a href="LICENSE">
+    <img src="https://img.shields.io/badge/License-APACHE%202.0-blue?style=for-the-badge" alt="License">
+  </a>
+  <a href="CHANGELOG.md">
+    <img src="https://img.shields.io/badge/Changelog-View-orange?style=for-the-badge" alt="Changelog">
+  </a>
+</p>
 
-- [Introduction](#introduction)
-- [Usage](#usage)
-- [Module Inputs](#module-inputs)
-- [Module Outputs](#module-outputs)
-- [Examples](#examples)
-- [License](#license)
+---
+
+## 📘 Overview
+
+The **Terraform AWS VPC Peering Module** automates creation, management, and routing setup for AWS **VPC Peering connections** — allowing direct private communication between multiple VPCs.
+
+It supports:
+- 🌎 **Cross-region** and **same-region** peering
+- 👥 **Cross-account** setup with manual acceptance
+- ⚡ **Auto-accept** for same-account peerings
+- 🧱 **CIDR overlap detection** & validation
+
+This module simplifies multi-environment cloud networking with clear tagging, modular inputs, and best-practice Terraform design.
+
+---
+
+## 🧩 Features
+
+| Feature | Description |
+|----------|-------------|
+| 🔄 **Multi-Region Support** | Establish peerings across AWS regions easily |
+| 🔐 **Cross-Account Ready** | Works securely between different AWS accounts |
+| ⚙️ **Auto or Manual Acceptance** | Automate or manually control peering approval |
+| 🧱 **CIDR Validation** | Avoid CIDR overlap errors during peering setup |
+| 🪶 **Lightweight Module** | Minimal dependencies, clean and maintainable |
+| 🏷️ **Built-In Tagging** | Auto-tags resources based on environment and labels |
+
+---
+
+## ⚡ Usage
+
+Before using, ensure Terraform ≥ **1.6.1** and AWS provider ≥ **5.21.0** are configured.
+
+---
 
 
-## Introduction
+### 🟢 Example: Same-Region Peering
 
-This module is designed for peering two Amazon Virtual Private Clouds (VPCs) using AWS infrastructure. It provides a streamlined way to create a VPC peering connection between two VPCs in the `eu-west-1` region. The module is customizable and can be easily integrated into your Terraform infrastructure.
-
-## Usage
-
-To use this module, you should have Terraform installed and configured for AWS. This module provides the necessary Terraform configuration for creating AWS resources, and you can customize the inputs as needed. Below is an example of how to use this module## examples
-
-# Example: default
 ```hcl
 # Requestor VPC provider
 provider "aws" {
@@ -37,25 +77,27 @@ module "vpc-peering" {
 }
 ```
 
-# Example: multi-region
-
+# Example: multi-region-peering
 ```hcl
 # Requestor VPC provider
 provider "aws" {
-  region = "us-west-1"
+region = "us-west-1"
 }
 
 module "vpc-peering" {
-  source           = "git::https://github.com/opsstation/terraform-aws-vpc-peering.git?ref=v1.0.0"
-  name             = "multi-region-peering"
-  environment      = "prod"
-  label_order      = ["environment", "name"]
-  requestor_vpc_id = "vpc-0408156477974f013"
-  acceptor_vpc_id  = "vpc-07fca4b652df66412"
-  accept_region    = "us-east-1"
-  auto_accept      = false
+source           = "git::https://github.com/opsstation/terraform-aws-vpc-peering.git?ref=v1.0.0"
+name             = "multi-region-peering"
+environment      = "prod"
+label_order      = ["environment", "name"]
+requestor_vpc_id = "vpc-0408156477974f013"
+acceptor_vpc_id  = "vpc-07fca4b652df66412"
+accept_region    = "us-east-1"
+auto_accept      = false
 }
+
 ```
+
+# Example: multi-region
 
 ```hcl
 # Requestor account provider
@@ -64,18 +106,25 @@ provider "aws" {
 }
 
 module "vpc-peering" {
-  source           = "git::https://github.com/opsstation/terraform-aws-vpc-peering.git?ref=v1.0.0"
-  name             = "cross-account-peering"
-  environment      = "prod"
-  requestor_vpc_id = "vpc-052ab4167f0a6279b"
-  acceptor_vpc_id  = "vpc-03adbeb6bca829fb5"
-  accept_region    = "us-east-1"
-  auto_accept      = false
-  peer_owner_id    = "xxxxxxxxxxx"  # Acceptor account ID
-  acceptor_cidr_block = "10.0.0.0/24"  # Acceptor VPC CIDR
+  source               = "git::https://github.com/opsstation/terraform-aws-vpc-peering.git?ref=v1.0.0"
+  name                 = "cross-account-peering"
+  environment          = "prod"
+  requestor_vpc_id     = "vpc-052ab4167f0a6279b"
+  acceptor_vpc_id      = "vpc-03adbeb6bca829fb5"
+  accept_region        = "us-east-1"
+  auto_accept          = false
+  peer_owner_id        = "xxxxxxxxxxx"
+  acceptor_cidr_block  = "10.0.0.0/24"
 }
+
 ```
 
+```hcl
+# Requestor account provider
+provider "aws" {
+  region = "us-west-1"
+}
+```
 
 ## Examples
 For detailed examples on how to use this module, please refer to the [examples](https://github.com/opsstation/terraform-aws-vpc-peering/tree/master/_example) directory within this repository.
@@ -99,8 +148,8 @@ Replace '[License Name]' and '[Your Name]' with the appropriate license and your
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 5.21.0 |
-| <a name="provider_aws.peer"></a> [aws.peer](#provider\_aws.peer) | >= 5.21.0 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | 6.20.0 |
+| <a name="provider_aws.peer"></a> [aws.peer](#provider\_aws.peer) | 6.20.0 |
 
 ## Modules
 
