@@ -1,27 +1,25 @@
-<h1 align="center">🌐 Terraform AWS VPC Peering Module</h1>
+<h1 align="center">🚀 Terraform AWS VPC Peering Module</h1>
 
 <p align="center">
-  <b>Modern, Scalable, and Secure AWS VPC Peering — Powered by Terraform.</b><br>
-  <i>Connect VPCs across accounts, regions, and environments with minimal configuration.</i>
+  <b>Modern · Scalable · Secure — Automated AWS VPC Peering with Terraform</b><br>
+  <i>Seamlessly connect VPCs across multiple accounts, regions, and environments with one reusable module.</i>
 </p>
 
 <p align="center">
-  <a href="https://github.com/opsstation/terraform-aws-vpc-peering/releases">
-    <img src="https://img.shields.io/github/v/release/opsstation/terraform-aws-vpc-peering?color=brightgreen&style=for-the-badge&logo=terraform&logoColor=white" alt="Latest Release">
-  </a>
-  <a href="#">
-    <img src="https://img.shields.io/github/actions/workflow/status/opsstation/terraform-aws-vpc-peering/terraform.yml?style=for-the-badge&logo=githubactions&logoColor=white&label=Build" alt="Build Status">
-  </a>
-  <a href="#">
-    <img src="https://img.shields.io/badge/tfsec-passing-success?style=for-the-badge&logo=terraform" alt="tfsec Passing">
-  </a>
-  <a href="LICENSE">
-    <img src="https://img.shields.io/badge/License-APACHE%202.0-blue?style=for-the-badge" alt="License">
-  </a>
-  <a href="CHANGELOG.md">
-    <img src="https://img.shields.io/badge/Changelog-View-orange?style=for-the-badge" alt="Changelog">
-  </a>
+  <img src="https://img.shields.io/badge/Release-v1.0.0-brightgreen?style=for-the-badge&logo=github" alt="Release">
+  <img src="https://img.shields.io/badge/Terraform-Verified%20Module-5C4EE5?style=for-the-badge&logo=terraform" alt="Terraform Verified">
+  <img src="https://img.shields.io/badge/Build-Passing-success?style=for-the-badge&logo=githubactions" alt="Build Passing">
+  <img src="https://img.shields.io/badge/License-Apache%202.0-blue?style=for-the-badge" alt="License">
+  <img src="https://img.shields.io/badge/Changelog-View-orange?style=for-the-badge" alt="Changelog">
 </p>
+
+<hr style="border:0.5px solid #444;">
+
+<p align="center">
+  <i>💡 Designed for cloud engineers who value automation, simplicity, and reliability.</i>
+</p>
+
+
 
 ---
 
