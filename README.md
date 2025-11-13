@@ -9,6 +9,20 @@
 > Designed for reliability, performance, and security — following AWS networking best practices.
 ---
 
+## 📘 Overview
+
+The **Terraform AWS VPC Peering Module** automates creation, management, and routing setup for AWS **VPC Peering connections** — allowing direct private communication between multiple VPCs.
+
+It supports:
+- 🌎 **Cross-region** and **same-region** peering
+- 👥 **Cross-account** setup with manual acceptance
+- ⚡ **Auto-accept** for same-account peerings
+- 🧱 **CIDR overlap detection** & validation
+
+This module simplifies multi-environment cloud networking with clear tagging, modular inputs, and best-practice Terraform design.
+
+---
+
 ## 🏢 About OpsStation
 
 **OpsStation** delivers **Cloud & DevOps excellence** for modern teams:
@@ -21,6 +35,7 @@
 > 👉 Visit [**www.opsstation.com**](https://www.opsstation.com) or email **hello@opsstation.com**
 
 ---
+
 ## 🌟 Features
 
 - ✅ Creates AWS **VPC**, **route tables**, **IGW**, and **NAT gateways**
@@ -31,7 +46,6 @@
 - ✅ Seamless integration with other OpsStation Terraform modules
 
 ---
-
 
 ### 🟢 Example: Same-Region Peering
 
@@ -92,7 +106,7 @@ module "vpc-peering" {
 }
 
 
-```----
+```
 
 ## Examples
 For detailed examples on how to use this module, please refer to the [examples](https://github.com/opsstation/terraform-aws-vpc-peering/tree/feature/upgrade-module/_example) directory within this repository.
