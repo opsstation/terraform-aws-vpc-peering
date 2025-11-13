@@ -1,58 +1,34 @@
-<h1 align="center">🚀 Terraform AWS VPC Peering Module</h1>
+# 🏗️ Terraform-AWS-VPC
 
-<p align="center">
-  <b>Modern · Scalable · Secure — Automated AWS VPC Peering with Terraform</b><br>
-  <i>Seamlessly connect VPCs across multiple accounts, regions, and environments with one reusable module.</i>
-</p>
+[![OpsStation](https://img.shields.io/badge/Made%20by-OpsStation-blue?style=flat-square&logo=terraform)](https://www.opsstation.com)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![Terraform](https://img.shields.io/badge/Terraform-1.6%2B-purple.svg?logo=terraform)](#)
+[![CI](https://github.com/OpsStation/terraform-aws-vpc/actions/workflows/ci.yml/badge.svg)](https://github.com/OpsStation/terraform-aws-vpc/actions/workflows/ci.yml)
 
-<p align="center">
-  <img src="https://img.shields.io/badge/Release-v1.0.0-brightgreen?style=for-the-badge&logo=github" alt="Release">
-  <img src="https://img.shields.io/badge/Terraform-Verified%20Module-5C4EE5?style=for-the-badge&logo=terraform" alt="Terraform Verified">
-  <img src="https://img.shields.io/badge/Build-Passing-success?style=for-the-badge&logo=githubactions" alt="Build Passing">
-  <img src="https://img.shields.io/badge/License-Apache%202.0-blue?style=for-the-badge" alt="License">
-  <img src="https://img.shields.io/badge/Changelog-View-orange?style=for-the-badge" alt="Changelog">
-</p>
-
-<hr style="border:0.5px solid #444;">
-
-<p align="center">
-  <i>💡 Designed for cloud engineers who value automation, simplicity, and reliability.</i>
-</p>
-
-
-
+> 🌩️ **A production-grade, reusable AWS VPC module by [OpsStation](https://www.opsstation.com)**
+> Designed for reliability, performance, and security — following AWS networking best practices.
 ---
 
-## 📘 Overview
+## 🏢 About OpsStation
 
-The **Terraform AWS VPC Peering Module** automates creation, management, and routing setup for AWS **VPC Peering connections** — allowing direct private communication between multiple VPCs.
+**OpsStation** delivers **Cloud & DevOps excellence** for modern teams:
+- 🚀 **Infrastructure Automation** with Terraform, Ansible & Kubernetes
+- 💰 **Cost Optimization** via scaling & right-sizing
+- 🛡️ **Security & Compliance** baked into CI/CD pipelines
+- ⚙️ **Fully Managed Operations** across AWS, Azure, and GCP
 
-It supports:
-- 🌎 **Cross-region** and **same-region** peering
-- 👥 **Cross-account** setup with manual acceptance
-- ⚡ **Auto-accept** for same-account peerings
-- 🧱 **CIDR overlap detection** & validation
-
-This module simplifies multi-environment cloud networking with clear tagging, modular inputs, and best-practice Terraform design.
-
----
-
-## 🧩 Features
-
-| Feature | Description |
-|----------|-------------|
-| 🔄 **Multi-Region Support** | Establish peerings across AWS regions easily |
-| 🔐 **Cross-Account Ready** | Works securely between different AWS accounts |
-| ⚙️ **Auto or Manual Acceptance** | Automate or manually control peering approval |
-| 🧱 **CIDR Validation** | Avoid CIDR overlap errors during peering setup |
-| 🪶 **Lightweight Module** | Minimal dependencies, clean and maintainable |
-| 🏷️ **Built-In Tagging** | Auto-tags resources based on environment and labels |
+> 💡 Need enterprise-grade DevOps automation?
+> 👉 Visit [**www.opsstation.com**](https://www.opsstation.com) or email **hello@opsstation.com**
 
 ---
+## 🌟 Features
 
-## ⚡ Usage
-
-Before using, ensure Terraform ≥ **1.6.1** and AWS provider ≥ **5.21.0** are configured.
+- ✅ Creates AWS **VPC**, **route tables**, **IGW**, and **NAT gateways**
+- ✅ Supports **multiple CIDR ranges** and **availability zones**
+- ✅ Optional **VPC Flow Logs** with CloudWatch or S3 destination
+- ✅ Configurable **DHCP options**
+- ✅ Modular & production-ready layout
+- ✅ Seamless integration with other OpsStation Terraform modules
 
 ---
 
@@ -116,14 +92,7 @@ module "vpc-peering" {
 }
 
 
-```
-
-```hcl
-# Requestor account provider
-provider "aws" {
-  region = "us-west-1"
-}
-```
+```----
 
 ## Examples
 For detailed examples on how to use this module, please refer to the [examples](https://github.com/opsstation/terraform-aws-vpc-peering/tree/feature/upgrade-module/_example) directory within this repository.
