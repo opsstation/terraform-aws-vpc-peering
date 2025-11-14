@@ -5,8 +5,7 @@
 [![Terraform](https://img.shields.io/badge/Terraform-1.6%2B-purple.svg?logo=terraform)](#)
 [![CI](https://github.com/OpsStation/terraform-aws-vpc/actions/workflows/ci.yml/badge.svg)](https://github.com/OpsStation/terraform-aws-vpc-peering/actions/workflows/ci.yml)
 
-🌩️ A production-grade, reusable AWS VPC Peering module by OpsStation
-Designed for secure, scalable, and automated network connectivity across AWS accounts and regions.
+> A production-grade, reusable AWS VPC Peering module by OpsStation Designed for secure, scalable, and automated network connectivity across AWS accounts and regions.**
 ---
 
 
