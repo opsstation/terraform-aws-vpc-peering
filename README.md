@@ -1,76 +1,101 @@
-# Terraform AWS VPC Peering
+# 🏗️ Terraform-AWS-VPC-Peering
 
-[![Latest Release](https://img.shields.io/github/release/opsstation/terraform-aws-vpc-peering.svg)](https://github.com/opsstation/terraform-aws-vpc-peering/releases/latest)
-[![tfsec](https://github.com/opsstation/terraform-aws-vpc-peering/actions/workflows/tfsec.yml/badge.svg)](https://github.com/opsstation/terraform-aws-vpc-peering/actions/workflows/tfsec.yml)
-[![License](https://img.shields.io/badge/License-APACHE-blue.svg)](LICENSE.md)
-[![Changelog](https://img.shields.io/badge/Changelog-blue)](CHANGELOG.md)
+[![OpsStation](https://img.shields.io/badge/Made%20by-OpsStation-blue?style=flat-square&logo=terraform)](https://www.opsstation.com)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![Terraform](https://img.shields.io/badge/Terraform-1.6%2B-purple.svg?logo=terraform)](#)
+[![CI](https://github.com/OpsStation/terraform-aws-vpc/actions/workflows/ci.yml/badge.svg)](https://github.com/OpsStation/terraform-aws-vpc-peering/actions/workflows/ci.yml)
+
+> **A production-grade, reusable AWS VPC Peering module by [OpsStation](https://www.opsstation.com)**
+> Designed for secure, scalable, and automated network connectivity across AWS accounts and regions.
+---
+
+
+## 🏢 About OpsStation
+
+**OpsStation** delivers **Cloud & DevOps excellence** for modern teams:
+- 🚀 **Infrastructure Automation** with Terraform, Ansible & Kubernetes
+- 💰 **Cost Optimization** via scaling & right-sizing
+- 🛡️ **Security & Compliance** baked into CI/CD pipelines
+- ⚙️ **Fully Managed Operations** across AWS, Azure, and GCP
+
+> 💡 Need enterprise-grade DevOps automation?
+> 👉 Visit [**www.opsstation.com**](https://www.opsstation.com) or email **hello@opsstation.com**
 
 ---
 
-## 📘 Description
+## 🌟 Features
 
-Terraform module to create and manage **AWS VPC Peering Connections** between two VPCs.
-This module supports both **intra-account** and **cross-account** peering setups, including automatic route table updates and tagging via the [Labels Module](https://github.com/opsstation/terraform-aws-labels).
-
----
-
-## ⚙️ Features
-
-- ✅ Create **VPC Peering Connections** between same or different AWS accounts
-- 🔄 Supports **auto-accept** for same-account setups
-- 🧩 Integration with **Labels Module** for consistent tagging
-- 🔐 Works with **cross-account** VPC peering
-- 📈 Automatically updates **route tables** for communication between VPCs
+- 🔗 Creates AWS VPC Peering Connections
+- 🌍 Supports same-region and cross-region configurations
+- 👥 Full cross-account support (acceptance must be done manually)
+- ⚡ Auto-accept enabled for same-account peerings
+- 📡 Automatically configures route tables for both VPCs
+- 🧱 Validates CIDR blocks to avoid overlapping networks
+- 🏷️ Clean and consistent tagging using OpsStation label standards
 
 ---
 
-## 🧱 Prerequisites
-
-| Name | Version | URL |
-|------|----------|-----|
-| **Terraform** | >= 1.6.6 | [Install Terraform](https://learn.hashicorp.com/terraform/getting-started/install.html) |
-| **AWS Provider** | >= 5.31.0 | [AWS Provider Docs](https://aws.amazon.com/) |
-
----
-
-## 🧩 Module Dependencies
-
-| Name | Description | URL |
-|------|--------------|-----|
-| **Labels Module** | Provides consistent tagging support for AWS VPC Peering connections. | [terraform-aws-labels](https://github.com/opsstation/terraform-aws-labels) |
-
----
-
-## 🚀 Usage Example
-
-Here’s how you can use this module in your Terraform configuration:
+### Example: Same-Region Peering
 
 ```hcl
-### 🧩 Example 1: Default
-module "vpc-peering" {
-  source = "./../../"
-
-  name             = local.name
-  environment      = local.environment
-  requestor_vpc_id = "vpc-0cfff2d5f05914f3c"
-  acceptor_vpc_id  = "vpc-0b9079d160060e1dc"
+# Requestor VPC provider
+provider "aws" {
+  region = "us-east-1"
 }
 
-### 🧩 Multi-Region VPC Peering
+module "vpc-peering" {
+  source           = "git::https://github.com/opsstation/terraform-aws-vpc-peering.git?ref=v1.0.0"
+  name             = "same-region-peering"
+  environment      = "prod"
+  requestor_vpc_id = "vpc-0d17e09526dd116c4"
+  acceptor_vpc_id  = "vpc-0ace2232c2c10bc28"
+  # auto_accept = true (default)
+}
+```
+
+# Example: multi-region-peering
+```hcl
+# Requestor VPC provider
+provider "aws" {
+region = "us-west-1"
+}
 
 module "vpc-peering" {
-  source           = "./../.."
-  name             = "vpc-peering"
-  environment      = "prod"
-  label_order      = ["environment", "name"]
-  requestor_vpc_id = "vpc-0a4dc95ec370935bf"
-  acceptor_vpc_id  = "vpc-04db274fdffd66e0d"
-  accept_region    = "us-east-1"
-  auto_accept      = false
+source           = "git::https://github.com/opsstation/terraform-aws-vpc-peering.git?ref=v1.0.0"
+name             = "multi-region-peering"
+environment      = "prod"
+label_order      = ["environment", "name"]
+requestor_vpc_id = "vpc-0408156477974f013"
+acceptor_vpc_id  = "vpc-07fca4b652df66412"
+accept_region    = "us-east-1"
+auto_accept      = false
+}
+
+```
+
+# Example: cross-account-peering
+#Important: For cross-account VPC peering, auto_accept must remain false, as AWS does not allow automatic acceptance across different accounts. The connection must be manually approved from the accepter account
+```hcl
+# Requestor account provider
+provider "aws" {
+  region = "us-west-1"
+}
+
+module "vpc-peering" {
+  source               = "git::https://github.com/opsstation/terraform-aws-vpc-peering.git?ref=v1.0.0"
+  name                 = "cross-account-peering"
+  environment          = "prod"
+  requestor_vpc_id     = "vpc-052ab4167f0a6279b"
+  acceptor_vpc_id      = "vpc-03adbeb6bca829fb5"
+  accept_region        = "us-east-1"
+  auto_accept          = false
+  peer_owner_id        = "xxxxxxxxxxx"
+  acceptor_cidr_block  = "10.0.0.0/24"
 }
 
 
 ```
+
 ## 📤 Outputs
 | **Name**                     | **Description**                                                                                |
 | ---------------------------- | ---------------------------------------------------------------------------------------------- |

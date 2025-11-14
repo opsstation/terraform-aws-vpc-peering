@@ -1,29 +1,16 @@
 name: pre-commit
-
 on:
   pull_request:
   push:
-    branches: [ master ]
-
+    branches: [master]
 jobs:
   pre-commit:
     runs-on: ubuntu-latest
     steps:
-      # Checkout repo
-      - uses: actions/checkout@v4   # ✅ updated from v3 → v4
-
-      # Setup Terraform (latest stable)
+      - uses: actions/checkout@v3
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
         with:
-          terraform_version: 1.9.8   # ✅ updated from 1.8.5 → 1.9.8
-
-      # Setup Python (latest action)
-      - name: Setup Python
-        uses: actions/setup-python@v5   # ✅ updated from v3 → v5
-        with:
-          python-version: '3.12'        # ✅ latest Python version
-
-      # Run pre-commit hooks
-      - name: Run pre-commit
-        uses: pre-commit/action@v3.0.1  # ✅ updated from v3.0.0 → v3.0.1
+          terraform_version: 1.8.5  # :arrows_counterclockwise: replace with your desired version
+      - uses: actions/setup-python@v3
+      - uses: pre-commit/action@v3.0.0
