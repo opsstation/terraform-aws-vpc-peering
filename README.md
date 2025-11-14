@@ -3,7 +3,7 @@
 [![OpsStation](https://img.shields.io/badge/Made%20by-OpsStation-blue?style=flat-square&logo=terraform)](https://www.opsstation.com)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Terraform](https://img.shields.io/badge/Terraform-1.6%2B-purple.svg?logo=terraform)](#)
-[![CI](https://github.com/OpsStation/terraform-aws-vpc/actions/workflows/ci.yml/badge.svg)](https://github.com/OpsStation/terraform-aws-vpc/actions/workflows/ci.yml)
+[![CI](https://github.com/OpsStation/terraform-aws-vpc/actions/workflows/ci.yml/badge.svg)](https://github.com/OpsStation/terraform-aws-vpc-peering/actions/workflows/ci.yml)
 
 🌩️ A production-grade, reusable AWS VPC Peering module by OpsStation
 Designed for secure, scalable, and automated network connectivity across AWS accounts and regions.
