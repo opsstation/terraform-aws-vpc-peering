@@ -5,7 +5,8 @@
 [![Terraform](https://img.shields.io/badge/Terraform-1.6%2B-purple.svg?logo=terraform)](#)
 [![CI](https://github.com/OpsStation/terraform-aws-vpc/actions/workflows/ci.yml/badge.svg)](https://github.com/OpsStation/terraform-aws-vpc-peering/actions/workflows/ci.yml)
 
-> A production-grade, reusable AWS VPC Peering module by OpsStation Designed for secure, scalable, and automated network connectivity across AWS accounts and regions.**
+> **A production-grade, reusable AWS VPC Peering module by [OpsStation](https://www.opsstation.com)**
+> Designed for secure, scalable, and automated network connectivity across AWS accounts and regions.
 ---
 
 
@@ -24,7 +25,6 @@
 
 ## 🌟 Features
 
-🌟 Features
 - 🔗 Creates AWS VPC Peering Connections
 - 🌍 Supports same-region and cross-region configurations
 - 👥 Full cross-account support (acceptance must be done manually)
@@ -35,7 +35,7 @@
 
 ---
 
-### 🟢 Example: Same-Region Peering
+### Example: Same-Region Peering
 
 ```hcl
 # Requestor VPC provider
