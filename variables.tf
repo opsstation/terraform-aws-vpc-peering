@@ -1,19 +1,13 @@
 variable "name" {
   type        = string
   default     = ""
-  description = "Name  (e.g. `app` or `cluster`)."
+  description = "Name of the peering connection"
 }
 
 variable "environment" {
   type        = string
   default     = ""
-  description = "Environment (e.g. `prod`, `dev`, `staging`)."
-}
-
-variable "repository" {
-  type        = string
-  default     = "https://github.com/opsstation/terraform-aws-vpc-peering"
-  description = "Terraform current module repo"
+  description = "Environment (e.g., prod, dev, test)"
 }
 
 variable "label_order" {
@@ -22,52 +16,66 @@ variable "label_order" {
   description = "Label order, e.g. `name`,`Environment`."
 }
 
-variable "managedby" {
+variable "repository" {
   type        = string
-  default     = "opsstation"
-  description = "ManagedBy, eg 'opsstation'."
+  default     = "https://github.com/opsstation/terraform-aws-vpc-peering"
+  description = "Terraform current module repo"
 }
 
-variable "enable_peering" {
-  type        = bool
-  default     = true
-  description = "Set to false to prevent the module from creating or accessing any resources."
+variable "managedby" {
+  type        = string
+  default     = ""
+  description = "Managed by"
 }
 
 variable "requestor_vpc_id" {
   type        = string
-  description = "Requestor VPC ID."
-
+  description = "Requestor VPC ID"
 }
 
 variable "acceptor_vpc_id" {
   type        = string
-  description = "Acceptor VPC ID."
-
-
-}
-
-variable "auto_accept" {
-  type        = bool
-  default     = true
-  description = "Automatically accept the peering (both VPCs need to be in the same AWS account)."
+  description = "Acceptor VPC ID"
 }
 
 variable "accept_region" {
   type        = string
   default     = ""
-  description = "The region of the accepter VPC of the VPC Peering Connection."
+  description = "Acceptor region for cross-region peering"
+}
+
+variable "auto_accept" {
+  type        = bool
+  default     = true
+  description = "Auto accept peering connection (true for same region, false for cross-region/cross-account)"
+}
+
+variable "peer_owner_id" {
+  type        = string
+  default     = ""
+  description = "AWS account ID of acceptor for cross-account peering"
+}
+
+variable "acceptor_cidr_block" {
+  type        = string
+  default     = ""
+  description = "Acceptor VPC CIDR block (required for cross-account)"
+}
+
+variable "enable_peering" {
+  type        = bool
+  default     = true
+  description = "Enable VPC peering"
 }
 
 variable "acceptor_allow_remote_vpc_dns_resolution" {
   type        = bool
-  default     = true
-  description = "Allow acceptor VPC to resolve public DNS hostnames to private IP addresses when queried from instances in the requestor VPC."
+  default     = false
+  description = "Allow DNS resolution from acceptor VPC"
 }
 
 variable "requestor_allow_remote_vpc_dns_resolution" {
   type        = bool
-  default     = true
-  description = "Allow requestor VPC to resolve public DNS hostnames to private IP addresses when queried from instances in the acceptor VPC."
+  default     = false
+  description = "Allow DNS resolution from requestor VPC"
 }
-
