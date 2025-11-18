@@ -19,7 +19,7 @@ locals {
 }
 
 module "labels" {
-  source      = "git::https://github.com/opsstation/terraform-aws-labels.git?ref=v1.0.0"
+  source      = "git::https://github.com/navneetbishnoi/terraform-aws-labels.git?ref=v1.0.0"
   name        = var.name
   environment = var.environment
   repository  = var.repository

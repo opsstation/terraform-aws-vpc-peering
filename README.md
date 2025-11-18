@@ -1,25 +1,25 @@
 # 🏗️ Terraform-AWS-VPC-Peering
 
-[![OpsStation](https://img.shields.io/badge/Made%20by-OpsStation-blue?style=flat-square&logo=terraform)](https://www.opsstation.com)
+[![navneetbishnoi](https://img.shields.io/badge/Made%20by-navneetbishnoi-blue?style=flat-square&logo=terraform)](https://www.navneetbishnoi.com)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Terraform](https://img.shields.io/badge/Terraform-1.6%2B-purple.svg?logo=terraform)](#)
-[![CI](https://github.com/OpsStation/terraform-aws-vpc/actions/workflows/ci.yml/badge.svg)](https://github.com/OpsStation/terraform-aws-vpc-peering/actions/workflows/ci.yml)
+[![CI](https://github.com/navneetbishnoi/terraform-aws-vpc/actions/workflows/ci.yml/badge.svg)](https://github.com/navneetbishnoi/terraform-aws-vpc-peering/actions/workflows/ci.yml)
 
-> **A production-grade, reusable AWS VPC Peering module by [OpsStation](https://www.opsstation.com)**
+> **A production-grade, reusable AWS VPC Peering module by [navneetbishnoi](https://www.navneetbishnoi.com)**
 > Designed for secure, scalable, and automated network connectivity across AWS accounts and regions.
 ---
 
 
-## 🏢 About OpsStation
+## 🏢 About navneetbishnoi
 
-**OpsStation** delivers **Cloud & DevOps excellence** for modern teams:
+**navneetbishnoi** delivers **Cloud & DevOps excellence** for modern teams:
 - 🚀 **Infrastructure Automation** with Terraform, Ansible & Kubernetes
 - 💰 **Cost Optimization** via scaling & right-sizing
 - 🛡️ **Security & Compliance** baked into CI/CD pipelines
 - ⚙️ **Fully Managed Operations** across AWS, Azure, and GCP
 
 > 💡 Need enterprise-grade DevOps automation?
-> 👉 Visit [**www.opsstation.com**](https://www.opsstation.com) or email **hello@opsstation.com**
+> 👉 Visit [**www.navneetbishnoi.com**](https://www.navneetbishnoi.com) or email **hello@navneetbishnoi.com**
 
 ---
 
@@ -31,7 +31,7 @@
 - ⚡ Auto-accept enabled for same-account peerings
 - 📡 Automatically configures route tables for both VPCs
 - 🧱 Validates CIDR blocks to avoid overlapping networks
-- 🏷️ Clean and consistent tagging using OpsStation label standards
+- 🏷️ Clean and consistent tagging using navneetbishnoi label standards
 
 ---
 
@@ -44,7 +44,7 @@ provider "aws" {
 }
 
 module "vpc-peering" {
-  source           = "git::https://github.com/opsstation/terraform-aws-vpc-peering.git?ref=v1.0.0"
+  source           = "git::https://github.com/navneetbishnoi/terraform-aws-vpc-peering.git?ref=v1.0.0"
   name             = "same-region-peering"
   environment      = "prod"
   requestor_vpc_id = "vpc-0d17e09526dd116c4"
@@ -61,7 +61,7 @@ region = "us-west-1"
 }
 
 module "vpc-peering" {
-source           = "git::https://github.com/opsstation/terraform-aws-vpc-peering.git?ref=v1.0.0"
+source           = "git::https://github.com/navneetbishnoi/terraform-aws-vpc-peering.git?ref=v1.0.0"
 name             = "multi-region-peering"
 environment      = "prod"
 label_order      = ["environment", "name"]
@@ -82,7 +82,7 @@ provider "aws" {
 }
 
 module "vpc-peering" {
-  source               = "git::https://github.com/opsstation/terraform-aws-vpc-peering.git?ref=v1.0.0"
+  source               = "git::https://github.com/navneetbishnoi/terraform-aws-vpc-peering.git?ref=v1.0.0"
   name                 = "cross-account-peering"
   environment          = "prod"
   requestor_vpc_id     = "vpc-052ab4167f0a6279b"
@@ -121,5 +121,5 @@ module "vpc-peering" {
 
 ---
 
-### 💙 Maintained by [OpsStation](https://www.opsstation.com)
-> OpsStation — Simplifying Cloud, Securing Scale.
+### 💙 Maintained by [navneetbishnoi](https://www.navneetbishnoi.com)
+> navneetbishnoi — Simplifying Cloud, Securing Scale.

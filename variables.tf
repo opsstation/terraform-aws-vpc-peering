@@ -18,7 +18,7 @@ variable "label_order" {
 
 variable "repository" {
   type        = string
-  default     = "https://github.com/opsstation/terraform-aws-vpc-peering"
+  default     = "https://github.com/navneetbishnoi/terraform-aws-vpc-peering"
   description = "Terraform current module repo"
 }
 

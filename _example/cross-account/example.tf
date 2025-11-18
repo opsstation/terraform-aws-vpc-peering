@@ -7,7 +7,7 @@ module "vpc-peering-cross-account" {
   name                = "cross-account"
   environment         = "test"
   label_order         = ["name"]
-  managedby           = "OpsStation"
+  managedby           = "navneetbishnoi"
   requestor_vpc_id    = "vpc-01f92c927b598901c"
   acceptor_vpc_id     = "vpc-008079d75cc82354e"
   auto_accept         = false

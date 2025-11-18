@@ -11,7 +11,7 @@ module "vpc-peering-same-region" {
   environment      = local.environment
   name             = local.name
   label_order      = ["name"]
-  managedby        = "OpsStation"
+  managedby        = "navneetbishnoi"
   requestor_vpc_id = "vpc-01f92c927b598901c"
   acceptor_vpc_id  = "vpc-051a7918b7b01f7ab"
   # auto_accept = true (default)
